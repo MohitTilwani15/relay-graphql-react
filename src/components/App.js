@@ -90,12 +90,14 @@ class App extends React.Component {
     const { relay, query, variables, render } = this.state;
 
     return (
-      <QueryRenderer
-        environment={relay}
-        query={query}
-        variables={variables || {}}
-        render={render}
-      />
+      <div className="container">
+        <QueryRenderer
+          environment={relay}
+          query={query}
+          variables={variables || {}}
+          render={render}
+        />
+      </div>
     );
   }
 }

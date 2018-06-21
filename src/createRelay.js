@@ -1,6 +1,9 @@
 /* @flow */
 
 import { Environment, Network, RecordSource, Store } from 'relay-runtime';
+const { installRelayDevTools } = require('relay-devtools');
+
+installRelayDevTools();
 
 export default function createRelay() {
   function fetchQuery(operation, variables) {

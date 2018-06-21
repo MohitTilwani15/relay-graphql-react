@@ -18,6 +18,7 @@
     "react-dom": "^16.4.1",
     "react-relay": "^1.6.0",
     "react-scripts": "1.1.4",
+    "relay-devtools": "^1.4.0",
     "relay-runtime": "^1.6.0",
     "universal-router": "^6.0.0"
   },
@@ -28,7 +29,8 @@
     "eject": "react-scripts eject",
     "relay": "relay-compiler --src ./src/ --schema ./server/schema/schema.graphql --watch",
     "server": "nodemon ./server/server.js",
-    "update-schema": "node ./server/updateSchema.js"
+    "update-schema": "node ./server/updateSchema.js",
+    "relay-devtools": "relay-devtools"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

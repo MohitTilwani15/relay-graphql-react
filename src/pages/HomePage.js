@@ -8,7 +8,10 @@ import SongList from '../components/SongList';
 class HomePage extends React.Component {
   render() {
     return (
-      <SongList songs={this.props.data.songs} />
+      <SongList
+        songs={this.props.data.songs}
+        relay={this.props.relay}
+      />
     );
   }
 }

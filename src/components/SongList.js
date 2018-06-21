@@ -1,24 +1,33 @@
 import React, { Component } from 'react';
+import { graphql, commitMutation } from 'react-relay';
 
 class SongList extends Component {
+  onSongDelete(id) {
+    commit(this.props.relay.environment, id);
+  }
+
   renderSongs() {
-    return this.props.songs.map(({ id, title }) => {
-      return (
-        <li
-          key={id}
-          className="collection-item"
-        >
-          <a>
-            {title}
-          </a>
-          <i
-            className="material-icons"
+    return this.props.songs.reduce((result, song) => {
+      if (song) {
+        result.push(
+          <li
+            key={song.id}
+            className="collection-item"
           >
-              delete
-          </i>
-        </li>
-      );
-    });
+            <a>
+              {song.title}
+            </a>
+            <i
+              className="material-icons"
+              onClick={() => this.onSongDelete(song.id)}
+            >
+                delete
+            </i>
+          </li>
+        );
+      }
+      return result;
+    },[]);
   }
 
   render() {
@@ -28,6 +37,26 @@ class SongList extends Component {
       </ul>
     );
   }
+}
+
+const mutation = graphql`
+  mutation SongListMutation($id: ID) {
+    deleteSong(id: $id) {
+      id
+    }
+  }
+`;
+
+function commit(environment, id) {
+  return new Promise((resolve, reject) => {
+    commitMutation(environment, {
+      mutation,
+      variables: { id },
+      updater: (store) => {
+        store.delete(id);
+      },
+    });
+  });
 }
 
 export default SongList;
