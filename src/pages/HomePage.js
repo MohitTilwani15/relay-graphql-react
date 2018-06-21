@@ -7,6 +7,7 @@ import HelloWorld from '../components/HelloWorld';
 
 class HomePage extends React.Component {
   render() {
+    console.log(this.props);
     return (
       <HelloWorld />
     );

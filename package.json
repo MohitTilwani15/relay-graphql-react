@@ -26,7 +26,7 @@
     "build": "node ./setup && react-scripts build",
     "test": "node ./setup && react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "relay": "relay-compiler --src ./src/ --schema ./server/schema/schema.graphql",
+    "relay": "relay-compiler --src ./src/ --schema ./server/schema/schema.graphql --watch",
     "server": "nodemon ./server/server.js",
     "update-schema": "node ./server/updateSchema.js"
   },

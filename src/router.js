@@ -15,9 +15,9 @@ const routes = [
         ...HomePage
       }
     `,
-    render: ([HomePage]) => ({
+    render: ([HomePage], data) => ({
       title: 'Hello World',
-      component: <HomePage />,
+      component: <HomePage data={data} />,
       chunks: ['HomePage'],
     }),
   },
