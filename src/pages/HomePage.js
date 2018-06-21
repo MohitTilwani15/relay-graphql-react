@@ -3,13 +3,12 @@
 import React from 'react';
 import { graphql, createFragmentContainer } from 'react-relay';
 
-import HelloWorld from '../components/HelloWorld';
+import SongList from '../components/SongList';
 
 class HomePage extends React.Component {
   render() {
-    console.log(this.props);
     return (
-      <HelloWorld />
+      <SongList songs={this.props.data.songs} />
     );
   }
 }
