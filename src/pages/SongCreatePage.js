@@ -1,9 +1,9 @@
 /* @flow */
 
-import React from 'react';
+import React, { Component } from 'react';
 import SongCreate from '../components/SongCreate';
 
-class SongCreatePage extends React.Component {
+class SongCreatePage extends Component {
   render() {
     return (
       <SongCreate />

@@ -3,7 +3,7 @@
 import React from 'react';
 import { graphql, createFragmentContainer } from 'react-relay';
 
-import SongList from '../components/SongList';
+import SongList from '../../components/SongList';
 
 class HomePage extends React.Component {
   render() {

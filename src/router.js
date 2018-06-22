@@ -1,26 +1,14 @@
 /* @flow */
 
 import React from 'react';
-import { graphql } from 'relay-runtime';
 import UniversalRouter from 'universal-router';
 
 import ErrorPage from './pages/ErrorPage';
 
+import HomePage from './pages/HomePage';
+import SongDetails from './pages/SongDetails';
+
 const routes = [
-  {
-    path: '/',
-    components: () => [import('./pages/HomePage')],
-    query: graphql`
-      query routerQuery {
-        ...HomePage
-      }
-    `,
-    render: ([HomePage], data) => ({
-      title: 'Song List',
-      component: <HomePage data={data} />,
-      chunks: ['HomePage'],
-    }),
-  },
   {
     path: '/createSong',
     components: () => [import('./pages/SongCreatePage')],
@@ -29,7 +17,9 @@ const routes = [
       component: <SongCreatePage />,
       chunks: ['SongCreatePage'],
     }),
-  }
+  },
+  ...HomePage,
+  ...SongDetails
 ];
 
 function resolveRoute(ctx) {

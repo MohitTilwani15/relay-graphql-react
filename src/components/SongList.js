@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { graphql, commitMutation } from 'react-relay';
 import RelayPropTypes from 'react-relay/lib/RelayPropTypes';
 
+import Link from './Link';
+
 class SongList extends Component {
   static contextTypes = {
     relay: RelayPropTypes.Relay,
@@ -19,9 +21,9 @@ class SongList extends Component {
             key={song.id}
             className="collection-item"
           >
-            <a>
+            <Link href={`/songDetails/${song.id}`}>
               {song.title}
-            </a>
+            </Link>
             <i
               className="material-icons"
               onClick={() => this.onSongDelete(song.id)}
@@ -41,9 +43,12 @@ class SongList extends Component {
         <ul className="collection">
           {this.renderSongs()}
         </ul>
-        <a className="btn-floating btn-large red right">
+        <Link
+          href="/createSong"
+          className="btn-floating btn-large red right"
+        >
           <i className="material-icons">add</i>
-        </a>
+        </Link>
       </div>
     );
   }
