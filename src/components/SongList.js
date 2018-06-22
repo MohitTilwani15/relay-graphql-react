@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { graphql, commitMutation } from 'react-relay';
+import RelayPropTypes from 'react-relay/lib/RelayPropTypes';
 
 class SongList extends Component {
+  static contextTypes = {
+    relay: RelayPropTypes.Relay,
+  };
+
   onSongDelete(id) {
-    commit(this.props.relay.environment, id);
+    commit(this.context.relay.environment, id);
   }
 
   renderSongs() {
@@ -32,9 +37,14 @@ class SongList extends Component {
 
   render() {
     return (
-      <ul className="collection">
-        {this.renderSongs()}
-      </ul>
+      <div>
+        <ul className="collection">
+          {this.renderSongs()}
+        </ul>
+        <a className="btn-floating btn-large red right">
+          <i className="material-icons">add</i>
+        </a>
+      </div>
     );
   }
 }

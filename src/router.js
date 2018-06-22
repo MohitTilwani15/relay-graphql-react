@@ -16,11 +16,20 @@ const routes = [
       }
     `,
     render: ([HomePage], data) => ({
-      title: 'Hello World',
+      title: 'Song List',
       component: <HomePage data={data} />,
       chunks: ['HomePage'],
     }),
   },
+  {
+    path: '/createSong',
+    components: () => [import('./pages/SongCreatePage')],
+    render: ([SongCreatePage]) => ({
+      title: 'create Song',
+      component: <SongCreatePage />,
+      chunks: ['SongCreatePage'],
+    }),
+  }
 ];
 
 function resolveRoute(ctx) {

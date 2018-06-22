@@ -10,7 +10,6 @@ class HomePage extends React.Component {
     return (
       <SongList
         songs={this.props.data.songs}
-        relay={this.props.relay}
       />
     );
   }
