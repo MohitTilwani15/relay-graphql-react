@@ -27,6 +27,7 @@ export default createFragmentContainer(
         lyrics {
           id
           content
+          likes
         }
       }
     }
