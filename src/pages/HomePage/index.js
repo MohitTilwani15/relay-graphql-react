@@ -5,9 +5,9 @@ export default [{
 	path: '/',
 	components: () => [import('./HomePage')],
 	query: graphql`
-		query HomePageQuery {
-			...HomePage
-		}
+    query HomePageQuery {
+      ...SongList
+    }
 	`,
 	render: ([HomePage], data) => ({
 		title: 'Song List',

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import RelayPropTypes from 'react-relay/lib/RelayPropTypes';
-import { graphql, commitMutation } from 'react-relay';
+import createSongMutation from '../mutations/createSong';
 
 class SongCreate extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class SongCreate extends Component {
   onSongSubmit(event) {
     event.preventDefault();
 
-    commit(this.context.relay.environment, this.state.songTitle)
+    createSongMutation.commit(this.context.relay.environment, this.state.songTitle)
       .then(() => {
         this.context.history.push('./')
       });
@@ -34,36 +34,6 @@ class SongCreate extends Component {
       </form>
     );
   }
-}
-
-const mutation = graphql`
-  mutation SongCreatePageMutation($title: String) {
-    addSong(title: $title) {
-      id
-      title
-      lyrics {
-        id
-        content
-      }
-    }
-  }
-`;
-
-function commit(environment, title) {
-	return new Promise((resolve, reject) => {
-		commitMutation(environment, {
-			mutation,
-      variables: { title },
-      onCompleted(response, errors) {
-        if (errors) {
-          reject(errors[0]);
-        } else {
-          resolve(response);
-        }
-      },
-      onError: reject,
-		});
-	});
 }
 
 export default SongCreate;

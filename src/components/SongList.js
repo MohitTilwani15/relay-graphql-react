@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { graphql, commitMutation } from 'react-relay';
+import { graphql, createFragmentContainer } from 'react-relay';
 import RelayPropTypes from 'react-relay/lib/RelayPropTypes';
+import deleteSongMutation from '../mutations/deleteSong';
 
 import Link from './Link';
 
@@ -10,11 +11,11 @@ class SongList extends Component {
   };
 
   onSongDelete(id) {
-    commit(this.context.relay.environment, id);
+    deleteSongMutation.commit(this.context.relay.environment, id);
   }
 
   renderSongs() {
-    return this.props.songs.reduce((result, song) => {
+    return this.props.data.songs.reduce((result, song) => {
       if (song) {
         result.push(
           <li
@@ -54,24 +55,14 @@ class SongList extends Component {
   }
 }
 
-const mutation = graphql`
-  mutation SongListMutation($id: ID) {
-    deleteSong(id: $id) {
-      id
+export default createFragmentContainer(
+  SongList,
+  graphql`
+    fragment SongList on RootQueryType {
+      songs {
+        id
+        title
+      }
     }
-  }
-`;
-
-function commit(environment, id) {
-  return new Promise((resolve, reject) => {
-    commitMutation(environment, {
-      mutation,
-      variables: { id },
-      updater: (store) => {
-        store.delete(id);
-      },
-    });
-  });
-}
-
-export default SongList;
+  `,
+);
