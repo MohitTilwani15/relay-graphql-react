@@ -40,6 +40,11 @@ const mutation = graphql`
   mutation SongCreatePageMutation($title: String) {
     addSong(title: $title) {
       id
+      title
+      lyrics {
+        id
+        content
+      }
     }
   }
 `;

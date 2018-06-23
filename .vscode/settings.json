@@ -9,6 +9,9 @@
   "search.exclude": {
     "**/build/**": true,
     "**/node_modules/**": true,
-    "**/__generated__/**": true
+    "**/__generated__/**": true,
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false,
+    "editor.insertSpaces": true,
   }
 }

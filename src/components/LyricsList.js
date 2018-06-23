@@ -31,6 +31,8 @@ class LyricsList extends React.Component {
   }
 
   render() {
+    if (!Object.keys(this.props.lyrics).length) return false;
+
     return (
       <ul className="collection">
         {this.renderLyrics()}
