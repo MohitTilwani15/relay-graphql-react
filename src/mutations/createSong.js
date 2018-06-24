@@ -18,6 +18,12 @@ function commit(environment, title) {
 		commitMutation(environment, {
 			mutation,
       variables: { title },
+      updater: store => {
+        const songs = store.getRoot().getLinkedRecords('songs');
+        const newSong = store.getRootField('addSong');
+        const newSongs = [...songs, newSong];
+        store.getRoot().setLinkedRecords(newSongs, 'songs');
+      },
       onCompleted(response, errors) {
         if (errors) {
           reject(errors[0]);
